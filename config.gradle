@@ -1,0 +1,19 @@
+ext {
+
+    applicationId = "ro.androidiasi.codecamp"
+    version = "1.0.0-SNAPSHOT"
+
+    misc = [
+            var1: 'http://google.com/',
+            var2: 'https://google.com/',
+    ]
+
+
+    okHttp3Version = "3.10.0"
+    okHttp3LoggingVersion = "3.6.0"
+    retrofitVersion = "2.3.0"
+    retrofit2RxJava2Version = "2.3.0"
+    timberVersion = "4.6.1"
+    moshiVersion = "1.8.0"
+    koinVersion = "1.0.1"
+}

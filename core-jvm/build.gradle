@@ -1,0 +1,39 @@
+apply plugin: 'java-library'
+apply plugin: 'idea'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'de.fuerstenau.buildconfig'
+
+apply from: '../config.gradle'
+
+buildConfig {
+    packageName = project.group + ".clientkt"
+    buildConfigField 'boolean', 'DEBUG', project.version.contains("SNAPSHOT") ? 'true' : 'false'
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib"
+
+    implementation "org.koin:koin-core:1.0.1"
+
+    implementation "com.squareup.okhttp3:okhttp:$okHttp3Version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$okHttp3LoggingVersion"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit2RxJava2Version"
+    implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
+    implementation "com.squareup.moshi:moshi-adapters:$moshiVersion"
+    implementation "com.jakewharton.timber:timber:$timberVersion"
+
+    kapt "com.squareup.moshi:moshi-kotlin-codegen:$moshiVersion"
+}
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+compileTestKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+sourceCompatibility = "8"
+targetCompatibility = "8"
